@@ -1,0 +1,37 @@
+# ORCA output files
+*.gbw
+*.engrad
+*.hess
+*.prop
+*.trj
+*.tmp
+*.molden.input
+*.pc
+*.scfp
+*.xyz.tmp
+
+# Large raw output
+*.rwf
+*.dmp
+*.chk
+
+# General temp and log files
+*.log
+*.bak
+*.tmp
+*.aux
+
+# IDE/editor files
+.vscode/
+.cursor/
+*.code-workspace
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Optional: exclude all .xyz by default unless manually added
+# *.xyz
+
+# ORCA crash dumps or incomplete runs
+orca_jobname*
