@@ -1,0 +1,75 @@
+RESEARCH LOG – Abiogenesis Simulation Project
+=============================================
+
+Overview:
+---------
+This project explores the plausibility of prebiotic molecule formation from simple precursors, using ORCA quantum chemistry simulations to evaluate energetic favorability of potential reaction steps.
+
+Simulation Methods:
+-------------------
+All calculations were run with Hartree-Fock (HF) using the 6-31G* basis set. Geometry optimizations were performed for individual molecules and clusters. No solvent models or catalysts were included at this stage.
+
+Findings:
+---------
+
+1. 5 HCN Molecule Cluster (`hcn5/`)
+   - FINAL SINGLE POINT ENERGY: -464.298729715253 Hartree
+   - Molecules remained unreacted and linear after optimization.
+   - Interpretation: stable baseline configuration for non-interacting HCN molecules.
+
+2. Diaminomaleonitrile (`damn/`)
+   - FINAL SINGLE POINT ENERGY: -294.814094291486 Hartree
+   - Molecule geometry remained intact; all expected bonds held.
+   - Interpretation: DAMN is geometrically viable, but not energetically favorable compared to isolated precursors.
+
+3. 4 HCN Molecule Cluster (`4hcn/`)
+   - FINAL SINGLE POINT ENERGY: -371.442347517426 Hartree
+   - Molecules remained linear and unreacted.
+   - Used for direct energy comparison with DAMN.
+
+4. Aminomalononitrile (amn/)
+FINAL SINGLE POINT ENERGY: -278.488728497469 Hartree
+
+Molecule optimized successfully and retained expected geometry.
+
+Interpretation: AMN is a stable intermediate candidate structurally.
+
+5. 3 HCN + NH₃ Cluster (3hcn_nh3/)
+FINAL SINGLE POINT ENERGY: -334.760245031167 Hartree
+
+Molecules remained spatially distinct; no spontaneous bonding observed.
+
+Reaction Energy Calculation:
+Formation Reaction (simplified):
+ 3 HCN + NH₃ → AMN
+
+ΔE = E_AMN - E_3HCN+NH3
+ΔE = (-278.4887) - (-334.7602)
+ΔE ≈ +56.27 Hartree ≈ +35,298 kcal/mol
+
+Interpretation:
+The formation of aminomalononitrile from 3 HCN and NH₃ is highly endothermic under HF/6-31G* in vacuum. This suggests the model lacks key stabilizing factors such as solvent effects or catalytic surfaces.
+
+Planned Refinements:
+Two new simulations have been prepared using DFT (B3LYP-D3BJ/def2-SVP) with implicit water solvation (CPCM model) to more accurately estimate the reaction thermodynamics:
+
+amn_solvent_dft.inp: AMN in water
+3hcn_nh3_solvent_dft.inp: Reactants in water
+
+These runs aim to determine whether environmental context significantly alters the favorability of AMN formation.
+
+6. Aminomalononitrile in water (`amn_solvent_dft/`)
+   - FINAL SINGLE POINT ENERGY: -279.806055248158 Hartree
+   - DFT optimization (B3LYP-D3BJ/def2-SVP) with CPCM(water)
+   - Structure remained stable with minimal distortion from vacuum geometry.
+
+7. 3 HCN + NH₃ Cluster in water (`3hcn_nh3_solvent_dft/`)
+   - FINAL SINGLE POINT ENERGY: -336.378773570590 Hartree
+   - All molecules retained original geometries; no spontaneous bonding occurred.
+
+ΔE = E_AMN - E_3HCN+NH₃  
+ΔE = (-279.8061) - (-336.3788)  
+ΔE ≈ +56.57 Hartree ≈ +35,510 kcal/mol  
+
+Conclusion:  
+Even under solvation and DFT treatment, AMN formation from HCN + NH₃ is strongly endothermic. Prebiotic plausibility may depend on factors beyond basic thermodynamic favorability in isolation, such as stepwise synthesis, mineral surfaces, or energy input from the environment.
